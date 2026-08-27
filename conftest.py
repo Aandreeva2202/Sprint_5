@@ -20,6 +20,6 @@ def driver():
 @pytest.fixture(scope="function")
 def user():
     return {
-        "email": "n2608@ya.ru",
-        "password": "2608"
+        "email": "mail5@mail.ru",
+        "password": "54321"
     }

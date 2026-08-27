@@ -40,6 +40,7 @@ class DoskaLocators:
     NAME_INPUT = By.XPATH, ".//input[@placeholder='Название']"
     DESCRIPT_INPUT = By.XPATH, ".//textarea[@name='description']"
     PRICE_INPUT = By.XPATH, ".//input[@placeholder='Стоимость']"
+    DROPDOWN = By.XPATH, ".//div[@class='dropDownMenu_options__CmHmm']"
     CATEGORY_DROPDOWN = By.XPATH, ".//input[@name='category']/following-sibling::button"
     CATEGORY_INPUT = By.XPATH, ".//span[text()= 'Книги']"
     CITY_DROPDOWN = By.XPATH, ".//input[@name='city']/following-sibling::button"
@@ -50,9 +51,12 @@ class DoskaLocators:
     CONDITION_USED = ".//div[@class='radioUnput_shell__Wtdwe'][./input[@value='Б/У']]//div[@class='radioUnput_inputRegular__FbVbr']"
     #кнопка Опубликовать
     PUBLISH_BUTTON = By.XPATH, ".//button[text()='Опубликовать']"
+    #Главная страница
+    HOME_PAGE = By.XPATH, ".//div[@class='homePage_homepageStyle__WP-Y1']"
     #переход на страницу пользователя
     USER_BUTTON = By.XPATH, ".//button[@class='circleSmall']"
     #последнее объявление
     CARD_LAST = By.XPATH, './/div[@class="card"][last()]//div[@class="about"]//h2'
     #футер
     FOOTER = By.XPATH, ".//div[@class='App_linkBlock__RGu0p']"
+    PROFILE_PAGE = By.XPATH, ".//div[@class='profilePage_gridAndPaginaton__togPs']"

@@ -12,20 +12,20 @@ from helpers import *
 class TestUserLogin:
     def test_ad_no_user(self, driver):
         driver.find_element(*DoskaLocators.AD_BUTTON).click()
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, ".//h1[text()='Чтобы разместить объявление, авторизуйтесь']")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(DoskaLocators.LOGIN_AD_POPUP))
         popup = driver.find_element(*DoskaLocators.LOGIN_AD_POPUP)
         assert popup.text == "Чтобы разместить объявление, авторизуйтесь"
 
     def test_ad_success(self, driver, user):
         #Авторизоваться под заранее созданным пользователем.
         driver.find_element(*DoskaLocators.LOGIN_AND_REGISTRATION_BUTTON).click()
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, ".//h1[text()='Войти']")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(DoskaLocators.LOGIN_POPUP))
         driver.find_element(*DoskaLocators.EMAIL_INPUT).send_keys(user["email"])
         driver.find_element(*DoskaLocators.PASSWORD_INPUT).send_keys(user["password"])
         driver.find_element(*DoskaLocators.LOGIN_BUTTON).click()
-        WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, ".//h3[text()='User.']")))
+        WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(DoskaLocators.USER_NAME))
         driver.find_element(*DoskaLocators.AD_BUTTON).click()
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, ".//h1[text()='Новое объявление']")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(DoskaLocators.NEW_AD_PAGE))
         #Заполнить все поля формы: «Название», «Описание товара», «Стоимость»
         new_name = f"Тест{random.randint(100, 999)}"
         driver.find_element(*DoskaLocators.NAME_INPUT).send_keys(new_name)
@@ -34,13 +34,13 @@ class TestUserLogin:
         #выбираем категорию из выпадающего списка
         category_list = driver.find_element(*DoskaLocators.CATEGORY_DROPDOWN)
         category_list.click()
-        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((By.XPATH, ".//div[@class='dropDownMenu_options__CmHmm']")))
+        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(DoskaLocators.DROPDOWN))
         category_input = driver.find_element(*DoskaLocators.CATEGORY_INPUT)
         category_input.click()
         #выбираем город из выпадающего списка
         city_list = driver.find_element(*DoskaLocators.CITY_DROPDOWN)
         city_list.click()
-        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((By.XPATH, ".//div[@class='dropDownMenu_options__CmHmm']")))
+        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(DoskaLocators.DROPDOWN))
         city_input = driver.find_element(*DoskaLocators.CITY_INPUT)
         city_input.click()
         #Выбрать RabioButton «Состояние товара».
@@ -54,10 +54,10 @@ class TestUserLogin:
         radio_button.click()
         #Нажать кнопку «Опубликовать».
         driver.find_element(*DoskaLocators.PUBLISH_BUTTON).click()
-        WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, ".//div[@class='homePage_homepageStyle__WP-Y1']")))
+        WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(DoskaLocators.HOME_PAGE))
         #Перейти в профиль пользователя.
         driver.find_element(*DoskaLocators.USER_BUTTON).click()
-        WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, ".//div[@class='profilePage_gridAndPaginaton__togPs']")))
+        WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(DoskaLocators.PROFILE_PAGE))
         footer = driver.find_element(*DoskaLocators.FOOTER)
         driver.execute_script("arguments[0].scrollIntoView();", footer)
         card_last = driver.find_element(*DoskaLocators.CARD_LAST)
